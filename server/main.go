@@ -25,5 +25,9 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello test server")
+	fmt.Fprintf(w, "hello test server\n\n%s\n", requestStr(r))
+}
+
+func requestStr(r *http.Request) string {
+	return fmt.Sprintf("Method: %s\nHost: %s\nURL: %s\nProto: %s", r.Method, r.Host, r.URL.String(), r.Proto)
 }

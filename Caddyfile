@@ -1,3 +1,9 @@
-0.0.0.0:8080, localhost:8080
+0.0.0.0:9000, localhost:9000
 
-respond "Hello from caddy in docker"
+reverse_proxy localhost:8080
+tls cert.pem key.pem
+
+@http {
+    protocol http
+}
+redir @http https://{host}{uri}
